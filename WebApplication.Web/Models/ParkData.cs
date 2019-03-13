@@ -25,7 +25,7 @@ namespace WebApplication.Web.Models
         /// <summary>
         /// The park's acreage
         /// </summary>
-        public double Acreage { get; set; }
+        public int Acreage { get; set; }
 
         /// <summary>
         /// The park's elevation in feet above sea level
@@ -35,7 +35,7 @@ namespace WebApplication.Web.Models
         /// <summary>
         /// Miles of hiking trails in the park
         /// </summary>
-        public double TrailMiles { get; set; }
+        public int TrailMiles { get; set; }
 
         /// <summary>
         /// The number of campsites in the park.
