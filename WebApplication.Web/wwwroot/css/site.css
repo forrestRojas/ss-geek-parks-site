@@ -22,6 +22,7 @@ time, mark, audio, video {
     font-size: 100%;
     font: inherit;
     vertical-align: baseline;
+    text-decoration: none;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
@@ -60,22 +61,99 @@ table {
 
 :root {
     font-size: 16px;
+    --h1-font: 4rem;
+    --h2-font: 3.5rem;
+    --h3-font: 3rem;
+    --h4-font: 2.5rem;
+    --h5-font: 2rem;
+    --h6-font: 1.5rem;
 }
 
-h1 { font-size: 4rem; }
-h2 { font-size: 3.5rem; }
-h3 { font-size: 3rem; }
-h4 { font-size: 2.5rem; }
-h5 { font-size: 2rem; }
-h6 { font-size: 1.5rem; }
-
-ol { list-style: lower-latin; }
-ul { list-style: circle; }
+h1 { font-size: var(--h1-font); }
+h2 { font-size: var(--h2-font); }
+h3 { font-size: var(--h3-font); }
+h4 { font-size: var(--h4-font); }
+h5 { font-size: var(--h5-font); }
+h6 { font-size: var(--h6-font); }
 
 img {
     height: auto;
     width: 100%;
     align-self: center;
+}
+
+main {
+    margin: 0 2vw;
+}
+
+
+.park {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 1fr 1fr;
+}
+
+    .park p {
+        font-variant-numeric: oldstyle-nums;
+        font-feature-settings: 'onum';
+        /* vendor-prefixes */
+        -moz-font-feature-settings: 'onum=1';
+        -ms-font-feature-settings: 'onum';
+        -webkit-font-feature-settings: 'onum';
+        -o-font-feature-settings: 'onum';
+    }
+
+    .park h2 + p  {
+        font-size: var(--h4-font);
+    }
+
+    .park section {
+        margin-left: 1em;
+        margin-bottom: auto;
+        margin-top: 1em;
+    }
+
+
+
+#site-header {
+    top: -1px;
+    position: sticky;
+    background:; /* Old browsers */
+    background: #feffe8; /* Old browsers */
+    background: -moz-linear-gradient(top, #feffe8 0%, #d6dbbf 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #feffe8 0%,#d6dbbf 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #feffe8 0%,#d6dbbf 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feffe8', endColorstr='#d6dbbf',GradientType=0 ); /* IE6-9 */
+}
+    #site-header nav {
+        background-color: #5E3D14;
+        color:white;
+        font-family: sans-serif;
+        border-top: 2pt solid rgba(255, 255, 255, 0.5);
+    }
+    
+    #site-header nav ul {
+        margin:auto;
+        display:inline-grid;
+        grid-auto-flow: column;
+    }
+
+    #site-header nav a {
+        color: inherit;
+        font-family: inherit;
+        font-weight: inherit;
+        padding: 1em;
+        display: block;
+    }
+
+    #site-header nav a:link {}
+    #site-header nav li:hover { background-color: rgba(255, 255, 255, .5)}
+    #site-header nav a:active {}
+    #site-header nav a:visited {}
+
+
+#site-header img {
+    max-width: 50%;
 }
 
 
