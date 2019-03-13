@@ -5,9 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - WebApplication.Web</title>
     <link href="~/css/site.css" rel="stylesheet" />
+    @{
+        //TODO Web font or system font
+    }
 </head>
 <body>
-    <h1>Welcome!</h1>
+    <header id="site-header">
+        <img id="site-name" src="~/images/logo.png" alt="National Park Geek" />
+        <nav id="main-nav">
+            <ul>
+                <li><a href="#"></a></li>
+                <li><a href="#"></a></li>
+                <li><a href="#"></a></li>
+            </ul>
+        </nav>
+    </header>
 
     @RenderBody()
 
