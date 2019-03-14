@@ -8,7 +8,7 @@
     @foreach (ParkData park in Model)
     {
         <article class="park">
-            <a asp-controller="#" asp-action="#">
+            <a asp-controller="Home" asp-action="Detail">
                 <img src="~/images/parks/@(park.Code.ToLower()).jpg" alt="Picture of @park.Name" />
             </a>
             <section>
