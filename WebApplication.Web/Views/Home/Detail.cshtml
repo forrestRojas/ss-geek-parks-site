@@ -1,7 +1,16 @@
-﻿
+﻿@model ParkDetailVewModel
 @{
     ViewData["Title"] = "Detail";
 }
 
-<h2>Detail</h2>
+<main>
+    <img src="~/images/parks/@(Model.Park.Code).jpg" alt="Image of @Model.Park.Name" />
+    <section>
+        <header>
+            <h2>@Model.Park.Name</h2>
+            <p>@Model.Park.State</p>
+        </header>
+            <p>@Model.Park.Description</p>
+    </section>
+</main>
 
