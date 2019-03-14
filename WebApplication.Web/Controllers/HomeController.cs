@@ -32,9 +32,14 @@ namespace WebApplication.Web.Controllers
         {
             ParkData park = parkDAO.GetPark(code);
             IList<DailyWeather> forecast = weatherDAO.GetWeather(code);
+            ParkDetailVewModel model = new ParkDetailVewModel
+            {
+                Park = park,
+                Forecast = forecast
+            };
 
 
-            return View();   //ParkDetail model);
+            return View(model);   //ParkDetail model);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
