@@ -160,3 +160,17 @@ main {
 #site-name.shrink {
     max-width: 20%;
 }
+
+#park-forecast {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+#park-forecast h2 {
+    display: none;
+}
+
+.today {
+    flex-grow: 1;
+    max-height: inherit;
+}
