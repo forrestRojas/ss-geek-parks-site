@@ -25,7 +25,8 @@ namespace WebApplication.Web.DAL
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("select * from weather where parkCode = code order by fiveDayForecastValue", conn);
+                    SqlCommand cmd = new SqlCommand("select * from weather where parkCode = @parkCode order by fiveDayForecastValue", conn);
+                    cmd.Parameters.AddWithValue("@parkCode", code);
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())

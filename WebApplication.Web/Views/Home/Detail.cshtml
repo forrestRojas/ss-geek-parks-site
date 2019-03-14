@@ -3,14 +3,40 @@
     ViewData["Title"] = "Detail";
 }
 
-<main>
+<main id="details">
     <img src="~/images/parks/@(Model.Park.Code).jpg" alt="Image of @Model.Park.Name" />
-    <section>
+    <section id="park-info">
         <header>
             <h2>@Model.Park.Name</h2>
             <p>@Model.Park.State</p>
         </header>
             <p>@Model.Park.Description</p>
+    </section>
+    <section id="park-forecast">
+        <h2>Forecast</h2>
+        @foreach (DailyWeather weather in Model.Forecast)
+        {
+            string todayClass = string.Empty;
+            if (weather.ForecastDay == 1)
+            {
+                todayClass = "today";
+            }
+            <section class="@(todayClass)">
+                <h3>Today</h3>
+                <img src="~/images/weather/@(weather.Forecast.Replace(" ", "")).png" alt="It will be @weather.Forecast on this day." />
+                <section>
+                    <p>High</p>
+                    <span>@weather.HiTemp</span>
+                    <p>Low</p>
+                    <span>@weather.LowTemp</span>
+                </section>
+                @if (weather.ForecastDay == 1)
+                {
+                    // TODO add indcators
+                    <p>text</p>
+                }
+            </section>
+        }
     </section>
 </main>
 
