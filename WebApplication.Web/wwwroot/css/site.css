@@ -152,8 +152,11 @@ main {
     #site-header nav a:visited {}
 
 
-#site-header img {
-    max-width: 50%;
+    #site-header img {
+        max-width: 50%;
+        transition: all 1s;
+    }
+
+#site-name.shrink {
+    max-width: 20%;
 }
-
-
