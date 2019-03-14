@@ -31,7 +31,7 @@ namespace WebApplication.Web.Controllers
         public IActionResult Detail(string code)
         {
             ParkData park = parkDAO.GetPark(code);
-            IList<DailyWeather> forecast = IWeatherDAO.GetWeather(code);
+            IList<DailyWeather> forecast = weatherDAO.GetWeather(code);
 
 
             return View();   //ParkDetail model);
