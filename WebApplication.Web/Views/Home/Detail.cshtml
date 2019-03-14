@@ -5,12 +5,24 @@
 
 <main id="details">
     <img src="~/images/parks/@(Model.Park.Code).jpg" alt="Image of @Model.Park.Name" />
-    <section id="park-info">
+    <section id="park-info" class="park-info">
         <header>
             <h2>@Model.Park.Name</h2>
             <p>@Model.Park.State</p>
+            <section>
+                <p>@Model.Park.Quote <span>@Model.Park.QuoteAuthor</span></p>
+            </section>
         </header>
-            <p>@Model.Park.Description</p>
+        <p>@Model.Park.YearFounded</p>
+        <p>@Model.Park.Description</p>
+        <p>@Model.Park.Acreage</p>
+        <p>@Model.Park.AnnualVisitorCount</p>
+        <p>@Model.Park.Campsites</p>
+        <p>@Model.Park.Elevation</p>
+        <p>@Model.Park.EntryFee</p>
+        <p>@Model.Park.NumSpecies</p>
+        <p>@Model.Park.TrailMiles</p>
+        <p>@Model.Park.Climate</p>
     </section>
     <section id="park-forecast">
         <h2>Forecast</h2>
@@ -19,16 +31,20 @@
             string todayClass = string.Empty;
             if (weather.ForecastDay == 1)
             {
-                todayClass = "today";
+                todayClass = " today";
             }
-            <section class="@(todayClass)">
+            <section class="forecast@(todayClass)">
                 <h3>Today</h3>
                 <img src="~/images/weather/@(weather.Forecast.Replace(" ", "")).png" alt="It will be @weather.Forecast on this day." />
                 <section>
-                    <p>High</p>
-                    <span>@weather.HiTemp</span>
-                    <p>Low</p>
-                    <span>@weather.LowTemp</span>
+                    <p>
+                        High
+                        <span>@weather.HiTemp</span>
+                    </p>
+                    <p>
+                        Low
+                        <span>@weather.LowTemp</span>
+                    </p>
                 </section>
                 @if (weather.ForecastDay == 1)
                 {

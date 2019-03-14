@@ -164,13 +164,39 @@ main {
 #park-forecast {
     display: flex;
     flex-flow: row nowrap;
+    align-items: center;
 }
 
-#park-forecast h2 {
-    display: none;
-}
+    #park-forecast h3, #park-forecast h2 {
+        display: none;
+    }
 
 .today {
-    flex-grow: 1;
+    flex-basis: 25em;
     max-height: inherit;
+}
+
+#park-forecast .today h3 { /* Fix the specificity*/
+    position:relative;
+    display:block;
+}
+
+.forecast {
+    text-align: center;
+
+}
+
+.forecast section {
+    align-items: center;
+}
+
+.forecast section p {
+    margin: 5px 25%;
+    width: auto;
+}
+
+.forecast span {
+    display: inline-block;
+    padding: 5px;
+    border: 1pt solid black;
 }
