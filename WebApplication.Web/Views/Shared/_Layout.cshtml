@@ -5,6 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - WebApplication.Web</title>
     <link href="~/css/site.css" rel="stylesheet" />
+    <script type="text/javascript" language="javascript" src="~/js/jquery-3.3.1.js"></script>
+
+    <script type="text/javascript" language="javascript">
+        $(function () {
+            var $win = $(window);
+
+            $win.scroll(function () {
+                if ($win.scrollTop() == 0)
+                    $("#site-name").removeClass("shrink");
+                else {
+                    $("#site-name").addClass("shrink");
+                }
+            });
+        });
+    </script>
     @{
         //TODO Web font or system font
     }
@@ -21,6 +36,5 @@
     </header>
 
     @RenderBody()
-
 </body>
 </html>
