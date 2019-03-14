@@ -36,23 +36,84 @@
             <section class="forecast@(todayClass)">
                 <h3>Today</h3>
                 <img src="~/images/weather/@(weather.Forecast.Replace(" ", "")).png" alt="It will be @weather.Forecast on this day." />
-                <section>
+                <section  class="temps">
                     <p>
                         High
-                        <span>@weather.HiTemp</span>
+                        <span class="highTemp">@weather.HiTemp</span>
                     </p>
                     <p>
                         Low
-                        <span>@weather.LowTemp</span>
+                        <span class="lowTemp">@weather.LowTemp</span>
                     </p>
                 </section>
                 @if (weather.ForecastDay == 1)
                 {
-                    // TODO add indcators
+                    // TODO add indcators for wether conditions, May be more then one
                     <p>text</p>
                 }
             </section>
         }
+        <section>
+            <button id="tempConvertButton" type="button" class="toggle" value="To Celcius">To Celcius</button>
+        </section>
     </section>
 </main>
 
+<script type="text/javascript">
+    function ConvertTemp() {
+        const freezingFahren = 32;
+        const conversionFactorFahren = 5 / 9;
+        const conversionFactorCelcius = 9 / 5;
+        const buttonId = "tempConvertButton";
+
+        var temps = document.querySelectorAll(".highTemp, .lowTemp");
+        //var lowTemps = [].slice.call(document.querySelectorAll(".lowTemp"));
+        var Tempbutton = document.getElementById(buttonId);
+        var TempbuttonValue = Tempbutton.value;
+        var isFahren = Boolean("To Celcius" == TempbuttonValue);
+
+
+
+
+        temps.forEach(function (tempNode) {
+            let temp = tempNode.textContent;
+            if (isFahren) {
+                let ctemp = ((temp - freezingFahren) * conversionFactorFahren);
+                tempNode.textContent = ctemp.toPrecision(2);
+            } else {
+                let ctemp = ((temp * conversionFactorCelcius) + freezingFahren);
+                tempNode.textContent = ctemp.toPrecision(2);
+            }
+        });
+
+        if (isFahren) {
+            Tempbutton.value = "To Fahrenheit";
+            Tempbutton.textContent = "To Fahrenheit";
+        } else {
+            Tempbutton.value = "To Celcius";
+            Tempbutton.textContent = "To Celcius";
+        }
+
+        //for (let i = 0; i < highTemps.length; i++) {
+        //    if (isFahren) {
+        //        let ctemp = (highTemps[i] - freezingFahren) * conversionFactorFahren;
+        //        highTemps[i] = ctemp;
+        //        ctemp = (lowTemps[i] - freezingFahren) * conversionFactorFahren;
+        //        lowTemps[i] = ctemp;
+
+
+        //    } else {
+        //        let ctemp = (highTemps[i] * conversionFactorCelcius) + freezingFahren;
+        //        highTemps[i] = ctemp;
+        //        ctemp = (lowTemps[i] - freezingFahren) * conversionFactorFahren;
+        //        lowTemps[i] = ctemp;
+        //    }
+        //}
+        
+    }
+    var el = document.getElementById("tempConvertButton");
+    if (el.addEventListener)
+        el.addEventListener("click", ConvertTemp, false);
+    else if (el.attachEvent)
+        el.attachEvent('onclick', ConvertTemp);
+</script>
