@@ -42,6 +42,18 @@ namespace WebApplication.Web.Controllers
         public IActionResult FavoriteParks()
         {
             IList<ParkData> parks = parkDAO.GetParks();
+            IList<Survey> surveys = surveyDAO.GetSurveys();
+            Dictionary<string, int> surveyCount =
+                (from park in parks
+                    join survey in surveys on park.Code equals survey.ParkCode into parkSurveys
+                    orderby park.Name ascending
+                    select new { parks = park.Name, surveys = parkSurveys.Count() }
+                ).ToDictionary(p => p.parks, s => s.surveys);
+
+            foreach (ParkData park in parks)
+            {
+                park.SurveyCount = surveyCount[park.Name];
+            }
 
             return View(parks);
         }
