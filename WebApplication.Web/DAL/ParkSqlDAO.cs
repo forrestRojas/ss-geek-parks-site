@@ -62,6 +62,11 @@ namespace WebApplication.Web.DAL
                         ParkData park = ConvertSqlToPark(reader);
                         parks.Add(park);
                     }
+
+                    cmd = new SqlCommand("select p.parkName, Count(s.parkCode) from park as p Left join survey_result as s on s.parkCode = p.parkCode group by p.parkName order by p.parkName;", conn);
+
+
+
                 }
             }
             catch (SqlException)

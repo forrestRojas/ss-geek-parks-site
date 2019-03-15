@@ -92,15 +92,9 @@ namespace WebApplication.Web.Controllers
         [HttpPost]
         public IActionResult FavoriteParks()
         {
-            IList<Survey> surveys = surveyDAO.GetSurveys();
             IList<ParkData> parks = parkDAO.GetParks();
-            FavoriteParksViewModel model = new FavoriteParksViewModel
-            {
-                Parks = parks,
-                Surveys = surveys
-            };
 
-            return View(model);
+            return View(parks);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

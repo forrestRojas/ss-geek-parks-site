@@ -144,3 +144,10 @@ INSERT INTO weather VALUES ('RMNP',4,33,47,'partly cloudy');
 INSERT INTO weather VALUES ('RMNP',5,30,43,'rain');
 
 COMMIT;
+
+
+select p.parkCode, Count(s.parkCode) 
+from park as p 
+Left join survey_result as s on s.parkCode = p.parkCode 
+group by p.parkCode 
+order by p.parkCode;
