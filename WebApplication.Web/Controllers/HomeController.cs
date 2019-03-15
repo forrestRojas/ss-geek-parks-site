@@ -14,13 +14,11 @@ namespace WebApplication.Web.Controllers
     {
         private readonly IParkDAO parkDAO;
         private readonly IWeatherDAO weatherDAO;
-        private readonly ISurveyDAO surveyDAO;
 
         public HomeController(IParkDAO parkDAO, IWeatherDAO weatherDAO, ISurveyDAO surveyDAO)
         {
             this.parkDAO = parkDAO;
             this.weatherDAO = weatherDAO;
-            this.surveyDAO = surveyDAO;
         }
 
         [HttpGet]
