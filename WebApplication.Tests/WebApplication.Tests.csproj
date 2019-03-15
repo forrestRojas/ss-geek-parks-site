@@ -19,4 +19,10 @@
     <ProjectReference Include="..\WebApplication.Web\WebApplication.Web.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="System">
+      <HintPath>System</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
