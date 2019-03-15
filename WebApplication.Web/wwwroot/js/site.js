@@ -3,6 +3,18 @@
 
 // Write your JavaScript code.
 
+window.addEventListener("load", startup);
+
+function startup() {
+    var el = document.getElementById("tempConvertButton");
+    if (el) {
+        if (el.addEventListener)
+            el.addEventListener("click", ConvertTemp, false);
+        else if (el.attachEvent)
+            el.attachEvent('onclick', ConvertTemp);
+    }
+}
+
 /* Converts the tempture for fahren to Celcius */ 
 function ConvertTemp() {
     const freezingFahren = 32;
@@ -37,11 +49,7 @@ function ConvertTemp() {
     }
 }
 
-var el = document.getElementById("tempConvertButton");
-if (el.addEventListener)
-    el.addEventListener("click", ConvertTemp, false);
-else if (el.attachEvent)
-    el.attachEvent('onclick', ConvertTemp);
+
 
 /* Shrinks the site header */
 $(function ShrinkSiteHeader() {
