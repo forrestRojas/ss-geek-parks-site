@@ -1,0 +1,218 @@
+﻿:root {
+    font-size: 16px;
+    --h1-font: 4rem;
+    --h2-font: 3.5rem;
+    --h3-font: 3rem;
+    --h4-font: 2.5rem;
+    --h5-font: 2rem;
+    --h6-font: 1.5rem;
+}
+
+h1 {
+    font-size: var(--h1-font);
+}
+
+h2 {
+    font-size: var(--h2-font);
+}
+
+h3 {
+    font-size: var(--h3-font);
+}
+
+h4 {
+    font-size: var(--h4-font);
+}
+
+h5 {
+    font-size: var(--h5-font);
+}
+
+h6 {
+    font-size: var(--h6-font);
+}
+
+img {
+    height: auto;
+    width: 100%;
+    align-self: center;
+}
+
+img, .image-area {
+    grid-area: image;
+}
+
+.body-text {
+    grid-area: body-text;
+}
+
+
+b {
+    font-weight: bold;
+}
+
+p, q {
+    font-variant: normal;
+    font-variant-numeric: oldstyle-nums;
+    font-feature-settings: 'onum';
+    /* vendor-prefixes */
+    -moz-font-feature-settings: 'onum=1';
+    -ms-font-feature-settings: 'onum';
+    -webkit-font-feature-settings: 'onum';
+    -o-font-feature-settings: 'onum';
+}
+
+main {
+    margin: 0 2vw;
+    grid-area: content;
+}
+
+/* Layout View */
+body {
+    display: grid;
+    grid-template-areas:
+        "header header header"
+        ". content .";
+}
+
+#site-header, header, .header {
+    grid-area: header;
+    font-variant: small-caps;
+    font-feature-settings: "smcp";
+}
+
+    header h2 + p {
+        font-variant: small-caps;
+        font-feature-settings: "smcp";
+        -moz-font-feature-settings: 'smcp=1';
+        -ms-font-feature-settings: 'smcp';
+        -webkit-font-feature-settings: 'smcp';
+        -o-font-feature-settings: 'smcp';
+    }
+
+nav {
+    background-color: #5E3D14;
+    color: white;
+    font-family: sans-serif;
+    border-top: 2pt solid rgba(255, 255, 255, 0.5);
+}
+
+    nav ul {
+        margin: auto;
+        display: inline-grid;
+        grid-auto-flow: column;
+    }
+
+    nav li:hover {
+        background-color: rgba(255, 255, 255, .5);
+    }
+
+    nav a {
+        color: inherit;
+        font-family: inherit;
+        font-weight: inherit;
+        padding: 1em;
+        display: block;
+    }
+
+    nav a:link {}
+    nav a:hover {}
+    nav a:active {}
+    nav a:visited {}
+
+#site-header {
+    top: -1px;
+    position: sticky;
+    background:; /* Old browsers */
+    background: #feffe8; /* Old browsers */
+    background: -moz-linear-gradient(top, #feffe8 0%, #d6dbbf 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #feffe8 0%,#d6dbbf 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #feffe8 0%,#d6dbbf 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feffe8', endColorstr='#d6dbbf',GradientType=0 ); /* IE6-9 */
+}
+
+#site-name {
+    max-width: 50%;
+    transition: all 1s;
+}
+
+.shrink {
+    width: 20%;
+}
+
+
+/* Views */
+/* home */
+
+#home article {
+    display: grid;
+    grid-template-areas:
+        "image header"
+        "image body-text";
+}
+
+/* Detail View */
+#details #park-info {
+    display:grid;
+    grid-template-areas:
+        "header"
+        "body-text"
+        "specs";
+}
+
+.specs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-area: specs;
+}
+
+    .specs p {
+        font-variant-numeric: tabular-nums;
+        font-feature-settings: "tnum";
+    }
+
+
+#details #park-forecast {
+    display: grid;
+    grid-template-columns: 2fr repeat(5, 1fr);
+    grid-template-areas: 
+        "header header header header header header" 
+        "forecast-today none none none none convert-button";
+}
+
+#tempConvertButton {
+    grid-area: convert-button;
+    height: 2em;
+}
+
+.today {
+    grid-area: forecast-today;
+}
+
+.forecast {
+    text-align: center;
+}
+    .forecast:not(:first-of-type) h3 {
+        display: none;
+    }
+    .forecast h3 {
+        position: relative;
+    }
+
+    .forecast section {
+        align-items: center;
+    }
+
+        .forecast section p {
+            margin: 5px 25%;
+            width: auto;
+            font-variant-numeric: tabular-nums;
+            font-feature-settings: "tnum";
+        }
+
+    .forecast span {
+        display: inline-block;
+        padding: 5px;
+        border: 1pt solid black;
+    }

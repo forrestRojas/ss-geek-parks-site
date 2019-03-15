@@ -9,23 +9,27 @@
         <header>
             <h2>@Model.Park.Name</h2>
             <p>@Model.Park.State</p>
-            <section>
-                <p>@Model.Park.Quote <span>@Model.Park.QuoteAuthor</span></p>
+            <section class="quote">
+                <p><q>@Model.Park.Quote</q> <span>@Model.Park.QuoteAuthor</span></p>
             </section>
         </header>
-        <p>@Model.Park.YearFounded</p>
-        <p>@Model.Park.Description</p>
-        <p>@Model.Park.Acreage</p>
-        <p>@Model.Park.AnnualVisitorCount</p>
-        <p>@Model.Park.Campsites</p>
-        <p>@Model.Park.Elevation</p>
-        <p>@Model.Park.EntryFee</p>
-        <p>@Model.Park.NumSpecies</p>
-        <p>@Model.Park.TrailMiles</p>
-        <p>@Model.Park.Climate</p>
+        <section class="body-text">
+            <p>@Model.Park.Description</p>
+        </section>
+        <section class="specs">
+            <p><b>Year Founded:</b> @Model.Park.YearFounded</p>
+            <p><b>Acreage:</b> @Model.Park.Acreage</p>
+            <p><b>Annual Visitors:</b> @Model.Park.AnnualVisitorCount</p>
+            <p><b>Number of Campsites:</b> @Model.Park.Campsites</p>
+            <p><b>Elevation (ft):</b> @Model.Park.Elevation</p>
+            <p><b>Entry Price:</b> @(Model.Park.EntryFee.ToString("C2"))</p>
+            <p><b>Number of Animal Species:</b> @Model.Park.NumSpecies</p>
+            <p><b>Trail Length (miles):</b> @Model.Park.TrailMiles</p>
+            <p><b>Park Climate:</b> @Model.Park.Climate</p>
+        </section>
     </section>
     <section id="park-forecast">
-        <h2>Forecast</h2>
+        <h2 class="header">Forecast</h2>
         @foreach (DailyWeather weather in Model.Forecast)
         {
             string todayClass = string.Empty;
@@ -34,9 +38,9 @@
                 todayClass = " today";
             }
             <section class="forecast@(todayClass)">
-                <h3>Today</h3>
+                <h3 class="header">Today</h3>
                 <img src="~/images/weather/@(weather.Forecast.Replace(" ", "")).png" alt="It will be @weather.Forecast on this day." />
-                <section  class="temps">
+                <section class="temps">
                     <p>
                         High
                         <span class="highTemp">@weather.HiTemp</span>
@@ -46,16 +50,16 @@
                         <span class="lowTemp">@weather.LowTemp</span>
                     </p>
                 </section>
-                @if (weather.ForecastDay == 1)
-                {
-                    // TODO add indcators for wether conditions, May be more then one
-                    <p>text</p>
-                }
+                <section class="body-text">
+                    @if (weather.ForecastDay == 1)
+                    {
+                        // TODO add indcators for wether conditions, May be more then one
+                        <p>text</p>
+                    }
+                </section>
             </section>
         }
-        <section>
-            <button id="tempConvertButton" type="button" class="toggle" value="To Celcius">To Celcius</button>
-        </section>
+        <button id="tempConvertButton" type="button" class="toggle" value="To Celcius">To Celcius</button>
     </section>
 </main>
 

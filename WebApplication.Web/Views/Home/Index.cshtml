@@ -4,16 +4,18 @@
 }
 
 <main id="home">
-    <h1></h1>
+    <h1 class="header"></h1>
     @foreach (ParkData park in Model)
     {
         <article class="park">
-            <a asp-controller="Home" asp-action="Detail" asp-route-code="@park.Code">
+            <a class="image-area" asp-controller="Home" asp-action="Detail" asp-route-code="@park.Code">
                 <img src="~/images/parks/@(park.Code.ToLower()).jpg" alt="Picture of @park.Name" />
             </a>
-            <section>
+            <header>
                 <h2>@park.Name</h2>
                 <p>@park.State</p>
+            </header>
+            <section class="body-text">
                 <p>@park.Description</p>
             </section>
         </article>
