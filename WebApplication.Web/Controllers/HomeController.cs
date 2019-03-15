@@ -75,28 +75,6 @@ namespace WebApplication.Web.Controllers
             return View(model);   //ParkDetailViewModel model);
         }
 
-        [HttpGet]
-        public IActionResult DailySurvey()
-        {
-            return View();
-        }
-
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult DailySurvey(int n)
-        {
-            return RedirectToAction("FavoriteParks");
-        }
-
-        [HttpPost]
-        public IActionResult FavoriteParks()
-        {
-            IList<ParkData> parks = parkDAO.GetParks();
-
-            return View(parks);
-        }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
