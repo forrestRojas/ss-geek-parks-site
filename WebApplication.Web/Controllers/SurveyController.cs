@@ -42,7 +42,16 @@ namespace WebApplication.Web.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DailySurvey(string parkId, string userEmail, string userState, string activityLevel)
         {
-            //TODO Add survey result to table
+            Survey newSurvey = new Survey();
+            newSurvey.ParkCode = parkId;
+            newSurvey.UserEmail = userEmail;
+            newSurvey.UserState = userState;
+            newSurvey.ActivityLevel = activityLevel;
+            surveyDAO.NewSurvey(newSurvey);
+
+            // set cookie so user can't participate again today
+            Response.Cookies.Append("SurveyComplete", "true");
+
             return RedirectToAction("FavoriteParks");
         }
 
