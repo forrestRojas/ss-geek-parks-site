@@ -81,5 +81,10 @@ namespace WebApplication.Web.Models
         /// The number of animal species in the park
         /// </summary>
         public int NumSpecies { get; set; }
+
+        /// <summary>
+        /// The number of surveys the park has.
+        /// </summary>
+        public int SurveyCount { get; set; }
     }
 }
