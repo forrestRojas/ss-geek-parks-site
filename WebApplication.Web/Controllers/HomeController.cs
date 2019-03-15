@@ -40,7 +40,7 @@ namespace WebApplication.Web.Controllers
             }
             if (forecast[0].Forecast == "rain" || forecast[0].Forecast == "thunderstorms")
             {
-                advisories += "Rain advisory. Pack rain gear and wear waterproof shoes. "
+                advisories += "Rain advisory. Pack rain gear and wear waterproof shoes. ";
             }
             if (forecast[0].Forecast == "thunderstorms")
             {
@@ -56,7 +56,7 @@ namespace WebApplication.Web.Controllers
             }
             if (forecast[0].HiTemp - forecast[0].LowTemp > 20)
             {
-                advisories += "Temperature differential advisory.  Wear breathable lyers. ";
+                advisories += "Temperature differential advisory.  Wear breathable layers. ";
             }
             if (forecast[0].LowTemp < 20)
             {
