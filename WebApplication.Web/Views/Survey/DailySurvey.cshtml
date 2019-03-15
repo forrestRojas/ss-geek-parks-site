@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "DailySurvey";
     IList<ParkData> parks = (IList<ParkData>)ViewData["ParkList"];
-    IDictionary<string, string> States = new Dictionary<string,string> {
+    Dictionary<string, string> States = new Dictionary<string,string> {
     {"AL", "Alabama"},
     {"AK", "Alaska"},
     {"AZ", "Arizona"},
@@ -65,7 +65,7 @@
     <select asp-for="ParkCode" required>
         @foreach (ParkData park in parks)
         {
-            <option value="park.Code">park.Name</option>
+            <option value="@park.Code">@park.Name</option>
         }
     </select>
 
@@ -76,15 +76,19 @@
     <select asp-for="UserState" required>
         @foreach (KeyValuePair<string, string> state in States)
         {
-            <option value="state.key">state.value</option>
+            <option value="@state.Key">@state.Value</option>
         }
     </select>
 
     <label asp-for="ActivityLevel"></label>
-    <input type="radio" asp-for="ActivityLevel" value="Inactive" required>
-    <input type="radio" asp-for="ActivityLevel" value="Sedentary" required>
-    <input type="radio" asp-for="ActivityLevel" value="Active" required>
-    <input type="radio" asp-for="ActivityLevel" value="Extremely Active" required>
+    <label for="Inactive">Inactive</label>
+    <input type="radio" name="ActivityLevel" id="Inactive" value="Inactive" required>
+    <label for="Sedentary">Sedentary</label>
+    <input type="radio" name="ActivityLevel" id="Sedentary" value="Sedentary" required>
+    <label for="Active">Active</label>
+    <input type="radio" name="ActivityLevel" id="Active" value="Active" required>
+    <label for="Extremely-Active">Extremely Active</label>
+    <input type="radio" name="ActivityLevel" id="Extremely-Active" value="Extremely Active" required>
 
     <input type="submit" value="Submit" />
 
