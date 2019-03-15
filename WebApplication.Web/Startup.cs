@@ -38,8 +38,8 @@ namespace WebApplication.Web
             services.AddDistributedMemoryCache();
             services.AddSession(options =>
             {
-                // Sets session expiration to 20 minuates
-                options.IdleTimeout = TimeSpan.FromMinutes(20);
+                // Sets session expiration to 1 day
+                options.IdleTimeout = TimeSpan.FromDays(1);
                 options.Cookie.HttpOnly = true;
             });
 

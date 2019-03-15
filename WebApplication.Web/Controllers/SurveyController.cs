@@ -27,14 +27,22 @@ namespace WebApplication.Web.Controllers
         [HttpGet]
         public IActionResult DailySurvey()
         {
+            if(Request.Cookies["SurveyComplete"] != null)
+            {
+                return RedirectToAction("FavoriteParks");
+            }
+            ParkData park = new ParkData();
+            IList<ParkData> parks = parkDAO.GetParks();
+            ViewData["ParkList"] = parks;
             return View();
         }
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult DailySurvey(int n)
+        public IActionResult DailySurvey(string parkId, string userEmail, string userState, string activityLevel)
         {
+            //TODO Add survey result to table
             return RedirectToAction("FavoriteParks");
         }
 
