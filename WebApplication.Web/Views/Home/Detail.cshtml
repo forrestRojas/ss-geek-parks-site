@@ -1,4 +1,4 @@
-﻿@model ParkDetailVewModel
+﻿@model ParkDetailViewModel
 @{
     ViewData["Title"] = "Detail";
 }
@@ -53,8 +53,7 @@
                 <section class="body-text">
                     @if (weather.ForecastDay == 1)
                     {
-                        // TODO add indcators for wether conditions, May be more then one
-                        <p>text</p>
+                        <p>@Model.WeatherAdvisories</p>
                     }
                 </section>
             </section>
