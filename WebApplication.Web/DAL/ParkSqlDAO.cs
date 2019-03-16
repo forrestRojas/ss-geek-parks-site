@@ -25,7 +25,7 @@ namespace WebApplication.Web.DAL
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand("select * from park where parkCode = @parkCode;", conn);
+                    SqlCommand cmd = new SqlCommand("SELECT p.*, COALESCE(s.cnt, 0) AS SurveyCount FROM park AS p LEFT JOIN (SELECT parkCode, COUNT(parkCode) AS cnt FROM survey_result GROUP BY parkCode) AS s ON p.parkCode = s.parkCode WHERE p.parkCode = @parkCode ORDER BY p.parkCode;", conn);
                     cmd.Parameters.AddWithValue("@parkCode", code);
                     SqlDataReader reader = cmd.ExecuteReader();
 
@@ -53,7 +53,7 @@ namespace WebApplication.Web.DAL
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand("select * from park order by parkName;", conn);
+                    SqlCommand cmd = new SqlCommand("SELECT p.*, COALESCE(s.cnt, 0) AS SurveyCount FROM park AS p LEFT JOIN (SELECT parkCode, COUNT(parkCode) AS cnt FROM survey_result GROUP BY parkCode) AS s ON p.parkCode = s.parkCode ORDER BY p.parkCode", conn);
 
                     SqlDataReader reader = cmd.ExecuteReader();
 
@@ -62,10 +62,6 @@ namespace WebApplication.Web.DAL
                         ParkData park = ConvertSqlToPark(reader);
                         parks.Add(park);
                     }
-
-                    cmd = new SqlCommand("select p.parkName, Count(s.parkCode) from park as p Left join survey_result as s on s.parkCode = p.parkCode group by p.parkName order by p.parkName;", conn);
-
-
 
                 }
             }
@@ -96,19 +92,20 @@ namespace WebApplication.Web.DAL
                 YearFounded = Convert.ToInt32(reader["yearFounded"]),
                 Quote = Convert.ToString(reader["inspirationalQuote"]),
                 QuoteAuthor = Convert.ToString(reader["inspirationalQuoteSource"]),
-                NumSpecies = Convert.ToInt32(reader["numberOfAnimalSpecies"])
+                NumSpecies = Convert.ToInt32(reader["numberOfAnimalSpecies"]),
+                SurveyCount = Convert.ToInt32(reader["SurveyCount"])
             };
 
             return park;
         }
-
-        public IDictionary<string, int> GetParkSurveyCounts(IList<ParkData> parks, IList<Survey> surveys)
-        {
-            return (from park in parks
-                    join survey in surveys on park.Code equals survey.ParkCode into parkSurveys
-                    orderby park.Name ascending
-                    select new { parks = park.Name, surveys = parkSurveys.Count() }
-                ).ToDictionary(p => p.parks, s => s.surveys);
-        }
+        // TODO Remove this code
+        //public IDictionary<string, int> GetParkSurveyCounts(IList<ParkData> parks, IList<Survey> surveys)
+        //{
+        //    return (from park in parks
+        //            join survey in surveys on park.Code equals survey.ParkCode into parkSurveys
+        //            orderby park.Name ascending
+        //            select new { parks = park.Name, surveys = parkSurveys.Count() }
+        //        ).ToDictionary(p => p.parks, s => s.surveys);
+        //}
     }
 }

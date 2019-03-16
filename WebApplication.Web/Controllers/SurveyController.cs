@@ -59,14 +59,7 @@ namespace WebApplication.Web.Controllers
         public IActionResult FavoriteParks()
         {
             IList<ParkData> parks = parkDAO.GetParks();
-            IList<Survey> surveys = surveyDAO.GetSurveys();
-            IDictionary<string, int> surveyCount = parkDAO.GetParkSurveyCounts(parks, surveys);
-
-            foreach (ParkData park in parks)
-            {
-                park.SurveyCount = surveyCount[park.Name];
-            }
-
+  
             return View(parks);
         }
     }

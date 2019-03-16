@@ -18,7 +18,9 @@ namespace WebApplication.Web.DAL
 
         public IList<Survey> GetSurveys()
         {
-            throw new NotImplementedException();
+            List<Survey> surveys = new List<Survey>();
+
+            return surveys;
         }
 
         public void NewSurvey(Survey survey)
