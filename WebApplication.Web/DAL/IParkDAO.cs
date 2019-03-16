@@ -8,7 +8,5 @@ namespace WebApplication.Web.DAL
         IList<ParkData> GetParks();
 
         ParkData GetPark(string code);
-
-        IDictionary<string, int> GetParkSurveyCounts(IList<ParkData> parks, IList<Survey> surveys);
     }
 }
