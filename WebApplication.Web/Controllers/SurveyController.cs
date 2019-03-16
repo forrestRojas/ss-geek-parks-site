@@ -40,13 +40,13 @@ namespace WebApplication.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult DailySurvey(string parkId, string userEmail, string userState, string activityLevel)
+        public IActionResult AddToSurvey(string ParkCode, string UserEmail, string UserState, string ActivityLevel)
         {
             Survey newSurvey = new Survey();
-            newSurvey.ParkCode = parkId;
-            newSurvey.UserEmail = userEmail;
-            newSurvey.UserState = userState;
-            newSurvey.ActivityLevel = activityLevel;
+            newSurvey.ParkCode = ParkCode;
+            newSurvey.UserEmail = UserEmail;
+            newSurvey.UserState = UserState;
+            newSurvey.ActivityLevel = ActivityLevel;
             surveyDAO.NewSurvey(newSurvey);
 
             // set cookie so user can't participate again today
