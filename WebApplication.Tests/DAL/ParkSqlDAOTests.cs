@@ -34,7 +34,20 @@ namespace WebApplication.Tests.DAL
         public void Returns_Dictionary_Of_ParkNames_And_SurveyCount()
         {
             // Arange
-            IDictionary<string, int> expected = new Dictionary<string, int>();
+            IDictionary<string, int> expected = new Dictionary<string, int>
+            {
+                { "Cuyahoga Valley National Park", 0 },
+                { "Everglades National Park", 0 },
+                { "Glacier National Park", 0 },
+                { "Grand Canyon National Park", 0 },
+                { "Grand Teton National Park", 0 },
+                { "Great Smoky Mountains National Park", 0 },
+                { "Mount Rainier National Park", 0 },
+                { "Rocky Mountain National Park", 0 },
+                { "Yellowstone National Park", 0 },
+                { "Yosemite National Park", 0 }
+            };
+
 
             //ACT
             IDictionary<string, int> actual = mockParkDAO.GetParkSurveyCounts(mockParks, mockSurveys);
