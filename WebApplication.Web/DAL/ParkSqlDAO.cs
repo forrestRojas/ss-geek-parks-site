@@ -25,7 +25,7 @@ namespace WebApplication.Web.DAL
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand("select * from park where parkCode = @parkCode;", conn);
+                    SqlCommand cmd = new SqlCommand("SELECT p.*, COALESCE(s.cnt, 0) AS SurveyCount FROM park AS p LEFT JOIN (SELECT parkCode, COUNT(parkCode) AS cnt FROM survey_result GROUP BY parkCode) AS s ON p.parkCode = s.parkCode WHERE p.parkCode = @parkCode ORDER BY p.parkCode;", conn);
                     cmd.Parameters.AddWithValue("@parkCode", code);
                     SqlDataReader reader = cmd.ExecuteReader();
 
