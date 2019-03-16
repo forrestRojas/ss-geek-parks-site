@@ -19,13 +19,19 @@ namespace WebApplication.Web.DAL
         public ParkData GetPark(string code)
         {
             ParkData park = new ParkData();
+            string sqlQuery = "SELECT p.*, COALESCE(s.cnt, 0) AS SurveyCount " +
+                              "FROM park AS p LEFT JOIN (SELECT parkCode, COUNT(parkCode) AS cnt " +
+                                                        "FROM survey_result " +
+                                                        "GROUP BY parkCode" +
+                                                        ") AS s ON p.parkCode = s.parkCode " +
+                              "WHERE p.parkCode = @parkCode " +
+                              "ORDER BY p.parkCode;";
             try
             {
                 using (SqlConnection conn = new SqlConnection(this.connectionString))
                 {
                     conn.Open();
-
-                    SqlCommand cmd = new SqlCommand("SELECT p.*, COALESCE(s.cnt, 0) AS SurveyCount FROM park AS p LEFT JOIN (SELECT parkCode, COUNT(parkCode) AS cnt FROM survey_result GROUP BY parkCode) AS s ON p.parkCode = s.parkCode WHERE p.parkCode = @parkCode ORDER BY p.parkCode;", conn);
+                    SqlCommand cmd = new SqlCommand(sqlQuery, conn);
                     cmd.Parameters.AddWithValue("@parkCode", code);
                     SqlDataReader reader = cmd.ExecuteReader();
 
@@ -46,14 +52,20 @@ namespace WebApplication.Web.DAL
         public IList<ParkData> GetParks()
         {
             List<ParkData> parks = new List<ParkData>();
-
+            string sqlQuery = "SELECT p.*, COALESCE(s.cnt, 0) AS SurveyCount " +
+                              "FROM park AS p " +
+                              "LEFT JOIN (SELECT parkCode, COUNT(parkCode) AS cnt " +
+                                         "FROM survey_result " +
+                                         "GROUP BY parkCode" +
+                                         ") AS s ON p.parkCode = s.parkCode " +
+                              "ORDER BY p.parkCode";
             try
             {
                 using (SqlConnection conn = new SqlConnection(this.connectionString))
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand("SELECT p.*, COALESCE(s.cnt, 0) AS SurveyCount FROM park AS p LEFT JOIN (SELECT parkCode, COUNT(parkCode) AS cnt FROM survey_result GROUP BY parkCode) AS s ON p.parkCode = s.parkCode ORDER BY p.parkCode", conn);
+                    SqlCommand cmd = new SqlCommand(sqlQuery, conn);
 
                     SqlDataReader reader = cmd.ExecuteReader();
 
