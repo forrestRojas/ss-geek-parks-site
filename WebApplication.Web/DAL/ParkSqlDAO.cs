@@ -58,7 +58,7 @@ namespace WebApplication.Web.DAL
                                          "FROM survey_result " +
                                          "GROUP BY parkCode" +
                                          ") AS s ON p.parkCode = s.parkCode " +
-                              "ORDER BY p.parkCode";
+                              "ORDER BY p.parkCode;";
             try
             {
                 using (SqlConnection conn = new SqlConnection(this.connectionString))
