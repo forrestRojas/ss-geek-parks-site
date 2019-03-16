@@ -70,9 +70,8 @@ main {
 /* Layout View */
 body {
     display: grid;
-    transition: height 1s;
-    grid-template-areas: 
-        "header header header" 
+    grid-template-areas:
+        "header header header"
         ". content .";
 }
 
@@ -122,8 +121,8 @@ nav {
     nav a:visited {}
 
 #site-header {
-    max-height: 317px;
-    min-height: 160px;
+    top: -1px;
+    position: sticky;
     background:; /* Old browsers */
     background: #feffe8; /* Old browsers */
     background: -moz-linear-gradient(top, #feffe8 0%, #d6dbbf 100%); /* FF3.6-15 */
@@ -132,24 +131,13 @@ nav {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feffe8', endColorstr='#d6dbbf',GradientType=0 ); /* IE6-9 */
 }
 
-.sticky {
-    top: -1px;
-    position: sticky;
-}
-
 #site-name {
-    display: flex;
-    margin: auto 0;
     max-width: 50%;
     transition: all 1s;
 }
 
-#site-name.shrink {
-    width: 22%;
-}
-
-body.shrink {
-    margin-top: 100px;
+.shrink {
+    width: 20%;
 }
 
 

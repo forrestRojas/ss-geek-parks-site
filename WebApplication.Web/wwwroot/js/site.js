@@ -54,25 +54,12 @@ function ConvertTemp() {
 /* Shrinks the site header */
 $(function ShrinkSiteHeader() {
     var $win = $(window);
-    var $body = $("body");
-    var $headerImg = $("#site-name");
-    var $header = $("#site-header");
 
     $win.scroll(function () {
-        if ($win.scrollTop() <= 300) {
-            $body.css("margin-top", ($win.scrollTop() + "px"));
-            $header.removeClass("sticky");
-        }
+        if ($win.scrollTop() == 0)
+            $("#site-name").removeClass("shrink");
         else {
-            $header.addClass("sticky");
-        }
-        if ($win.scrollTop() == 0) {
-            $headerImg.removeClass("shrink");
-            $body.removeClass("shrink");
-        }
-        else {
-            $headerImg.addClass("shrink");
-            $body.addClass("shrink");
+            $("#site-name").addClass("shrink");
         }
     });
 });
