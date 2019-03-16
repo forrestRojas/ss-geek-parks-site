@@ -60,36 +60,36 @@
 }
 
 <h2>DailySurvey</h2>
-<form method="get" asp-controller="Survey" asp-action="DailySurvey" asp-route-parkId="park.code">
-    <label asp-for="ParkCode">Favorite National Park</label>
-    <select asp-for="ParkCode" required>
+<form method="get" id="daily-survey" asp-controller="Survey" asp-action="DailySurvey" asp-route-parkId="park.code">
+    <label asp-for="ParkCode" form="daily-survey">Favorite National Park</label>
+    <select asp-for="ParkCode" form="daily-survey" required>
         @foreach (ParkData park in parks)
         {
             <option value="@park.Code">@park.Name</option>
         }
     </select>
 
-    <label asp-for="UserEmail"></label>
-    <input asp-for="UserEmail" required type="email" />
+    <label asp-for="UserEmail" form="daily-survey"></label>
+    <input asp-for="UserEmail" form="daily-survey" required type="email" />
 
-    <label asp-for="UserState"></label>
-    <select asp-for="UserState" required>
+    <label asp-for="UserState" form="daily-survey"></label>
+    <select asp-for="UserState" form="daily-survey" required>
         @foreach (KeyValuePair<string, string> state in States)
         {
             <option value="@state.Key">@state.Value</option>
         }
     </select>
 
-    <label asp-for="ActivityLevel"></label>
-    <label for="Inactive">Inactive</label>
-    <input type="radio" name="ActivityLevel" id="Inactive" value="Inactive" required>
-    <label for="Sedentary">Sedentary</label>
-    <input type="radio" name="ActivityLevel" id="Sedentary" value="Sedentary" required>
-    <label for="Active">Active</label>
-    <input type="radio" name="ActivityLevel" id="Active" value="Active" required>
-    <label for="Extremely-Active">Extremely Active</label>
-    <input type="radio" name="ActivityLevel" id="Extremely-Active" value="Extremely Active" required>
+    <label asp-for="ActivityLevel" form="daily-survey"></label>
+    <label for="Inactive" form="daily-survey">Inactive</label>
+    <input id="Inactive"  type="radio" name="ActivityLevel" value="Inactive" form="daily-survey" required>
+    <label for="Sedentary" form="daily-survey">Sedentary</label>
+    <input id="Sedentary"  type="radio" name="ActivityLevel" value="Sedentary" form="daily-survey" required>
+    <label for="Active" form="daily-survey">Active</label>
+    <input type="radio" name="ActivityLevel" value="Active" form="daily-survey" required>
+    <label for="Extremely-Active" form="daily-survey">Extremely Active</label>
+    <input type="radio" name="ActivityLevel" id="Extremely-Active" value="Extremely Active" form="daily-survey" required>
 
-    <input type="submit" value="Submit" />
+    <button type="submit" class="form-submit-button" form="daily-survey" value="submit">Submit</button>
 
 </form>

@@ -98,14 +98,14 @@ namespace WebApplication.Web.DAL
 
             return park;
         }
-
-        public IDictionary<string, int> GetParkSurveyCounts(IList<ParkData> parks, IList<Survey> surveys)
-        {
-            return (from park in parks
-                    join survey in surveys on park.Code equals survey.ParkCode into parkSurveys
-                    orderby park.Name ascending
-                    select new { parks = park.Name, surveys = parkSurveys.Count() }
-                ).ToDictionary(p => p.parks, s => s.surveys);
-        }
+        // TODO Remove this code
+        //public IDictionary<string, int> GetParkSurveyCounts(IList<ParkData> parks, IList<Survey> surveys)
+        //{
+        //    return (from park in parks
+        //            join survey in surveys on park.Code equals survey.ParkCode into parkSurveys
+        //            orderby park.Name ascending
+        //            select new { parks = park.Name, surveys = parkSurveys.Count() }
+        //        ).ToDictionary(p => p.parks, s => s.surveys);
+        //}
     }
 }
