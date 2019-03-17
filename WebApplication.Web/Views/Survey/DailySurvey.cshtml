@@ -3,64 +3,64 @@
     ViewData["Title"] = "DailySurvey";
     IList<ParkData> parks = (IList<ParkData>)ViewData["ParkList"];
     Dictionary<string, string> States = new Dictionary<string, string> {
-{"AL", "Alabama"},
-{"AK", "Alaska"},
-{"AZ", "Arizona"},
-{"AR", "Arkansas"},
-{"CA", "California"},
-{"CO", "Colorado"},
-{"CT", "Connecticut"},
-{"DE", "Delaware"},
-{"FL", "Florida"},
-{"GA", "Georgia"},
-{"GU", "Guam"},
-{"HI", "Hawaii"},
-{"ID", "Idaho"},
-{"IL", "Illinois"},
-{"IN", "Indiana"},
-{"IA", "Iowa"},
-{"KS", "Kansas"},
-{"KY", "Kentucky"},
-{"LA", "Louisiana"},
-{"ME", "Maine"},
-{"MD", "Maryland"},
-{"MA", "Massachusettes"},
-{"MI", "Michigan"},
-{"MN", "Minnesota"},
-{"MS", "Mississippi"},
-{"MO", "Missouri"},
-{"MT", "Montana"},
-{"NE", "Nebraska"},
-{"NV", "Nevada"},
-{"NH", "New Hampshire"},
-{"NJ", "New Jersey"},
-{"NM", "New Mexico"},
-{"NY", "New York"},
-{"NC", "North Carolina"},
-{"ND", "North Dakota"},
-{"OH", "Ohio"},
-{"OK", "Oklahoma"},
-{"OR", "Oregon"},
-{"PA", "Pennsylvania"},
-{"PR", "PuertoRico"},
-{"RI", "Rhode Island"},
-{"SC", "South Carolina"},
-{"SD", "South Dakota"},
-{"TN", "Tennesee"},
-{"TX", "Texas"},
-{"UT", "Utah"},
-{"VE", "Vermont"},
-{"VI", "Virgin Islands"},
-{"VA", "Virginia"},
-{"WA", "Washington"},
-{"WV", "West Virginia"},
-{"WI", "Wisconsin"},
-{"WY", "Wyoming"}
-};
+        {"AL", "Alabama"},
+        {"AK", "Alaska"},
+        {"AZ", "Arizona"},
+        {"AR", "Arkansas"},
+        {"CA", "California"},
+        {"CO", "Colorado"},
+        {"CT", "Connecticut"},
+        {"DE", "Delaware"},
+        {"FL", "Florida"},
+        {"GA", "Georgia"},
+        {"GU", "Guam"},
+        {"HI", "Hawaii"},
+        {"ID", "Idaho"},
+        {"IL", "Illinois"},
+        {"IN", "Indiana"},
+        {"IA", "Iowa"},
+        {"KS", "Kansas"},
+        {"KY", "Kentucky"},
+        {"LA", "Louisiana"},
+        {"ME", "Maine"},
+        {"MD", "Maryland"},
+        {"MA", "Massachusettes"},
+        {"MI", "Michigan"},
+        {"MN", "Minnesota"},
+        {"MS", "Mississippi"},
+        {"MO", "Missouri"},
+        {"MT", "Montana"},
+        {"NE", "Nebraska"},
+        {"NV", "Nevada"},
+        {"NH", "New Hampshire"},
+        {"NJ", "New Jersey"},
+        {"NM", "New Mexico"},
+        {"NY", "New York"},
+        {"NC", "North Carolina"},
+        {"ND", "North Dakota"},
+        {"OH", "Ohio"},
+        {"OK", "Oklahoma"},
+        {"OR", "Oregon"},
+        {"PA", "Pennsylvania"},
+        {"PR", "PuertoRico"},
+        {"RI", "Rhode Island"},
+        {"SC", "South Carolina"},
+        {"SD", "South Dakota"},
+        {"TN", "Tennesee"},
+        {"TX", "Texas"},
+        {"UT", "Utah"},
+        {"VE", "Vermont"},
+        {"VI", "Virgin Islands"},
+        {"VA", "Virginia"},
+        {"WA", "Washington"},
+        {"WV", "West Virginia"},
+        {"WI", "Wisconsin"},
+        {"WY", "Wyoming"}
+    };
 }
-<main>
-    <h2>DailySurvey</h2>
-    <form method="post" id="daily-survey" asp-controller="Survey" asp-action="AddToSurvey" asp-route-parkId="park.code">
+<main id="daily-survey">
+    <h1>Daily Survey</h1>
+    <form method="post" id="daily-survey-form" asp-controller="Survey" asp-action="AddToSurvey" asp-route-parkId="park.code">
         <label asp-for="ParkCode" form="daily-survey">Favorite National Park</label>
         <select asp-for="ParkCode" form="daily-survey" required>
             @foreach (ParkData park in parks)
@@ -80,16 +80,19 @@
             }
         </select>
 
-        <label asp-for="ActivityLevel" form="daily-survey"></label>
-        <label for="Inactive" form="daily-survey">Inactive</label>
-        <input id="Inactive" type="radio" name="ActivityLevel" value="Inactive" form="daily-survey" required>
-        <label for="Sedentary" form="daily-survey">Sedentary</label>
-        <input id="Sedentary" type="radio" name="ActivityLevel" value="Sedentary" form="daily-survey" required>
-        <label for="Active" form="daily-survey">Active</label>
-        <input type="radio" name="ActivityLevel" value="Active" form="daily-survey" required>
-        <label for="Extremely-Active" form="daily-survey">Extremely Active</label>
-        <input type="radio" name="ActivityLevel" id="Extremely-Active" value="Extremely Active" form="daily-survey" required>
-
+        <fieldset id="ActivityLevel" name="ActivityLevel" form="daily-survey">
+            <legend>Activity Level</legend>
+            <div class="feildset-radio-grid">
+                <input id="Inactive" type="radio" name="ActivityLevel" value="Inactive" form="daily-survey" required>
+                <label for="Inactive" form="daily-survey">Inactive</label>
+                <input id="Sedentary" type="radio" name="ActivityLevel" value="Sedentary" form="daily-survey" required>
+                <label for="Sedentary" form="daily-survey">Sedentary</label>
+                <input type="radio" name="ActivityLevel" value="Active" form="daily-survey" required>
+                <label for="Active" form="daily-survey">Active</label>
+                <input type="radio" name="ActivityLevel" id="Extremely-Active" value="Extremely Active" form="daily-survey" required>
+                <label for="Extremely-Active" form="daily-survey">Extremely Active</label>
+            </div>
+        </fieldset>
         <button type="submit" class="form-submit-button" form="daily-survey" value="submit">Submit</button>
 
     </form>
