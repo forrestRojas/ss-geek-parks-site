@@ -76,7 +76,6 @@ namespace WebApplication.Web.Controllers
                 WeatherAdvisories = advisories
             };
 
-
             return this.View(model);
         }
 

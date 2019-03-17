@@ -46,7 +46,7 @@ namespace WebApplication.Web.Controllers
             newSurvey.UserEmail = userEmail;
             newSurvey.UserState = userState;
             newSurvey.ActivityLevel = activityLevel;
-            surveyDAO.NewSurvey(newSurvey);
+            this.surveyDAO.NewSurvey(newSurvey);
 
             // set cookie so user can't participate again today
             this.Response.Cookies.Append("SurveyComplete", "true");
