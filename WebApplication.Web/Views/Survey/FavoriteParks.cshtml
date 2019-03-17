@@ -3,21 +3,22 @@
     ViewData["Title"] = "FavoriteParks";
 }
 
-<h2>FavoriteParks</h2>
 <main id="FavPark">
-    <h1 class="header"></h1>
+    <h1 class="header">Favorite Parks</h1>
     @foreach(ParkData park in Model)
     {
-    <article class="park">
-        <img src="~/images/parks/@(park.Code.ToLower()).jpg" alt="Picture of @park.Name" />
-        <header>
-            <h2>@park.SurveyCount @park.Name</h2>
-            <p>@park.State</p>
-        </header>
-        <section class="body-text">
-            <p>@park.Description</p>
-        </section>
-    </article>
+        if(park.SurveyCount > 0)
+        {
+        <article class="park">
+            <img src="~/images/parks/@(park.Code.ToLower()).jpg" alt="Picture of @park.Name" />
+            <header>
+                <h2>@park.SurveyCount @park.Name</h2>
+                <p>@park.State</p>
+            </header>
+            <section class="body-text">
+                <p>@park.Description</p>
+            </section>
+        </article>    
+        }
     }
-
 </main>
