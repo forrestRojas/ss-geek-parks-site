@@ -63,13 +63,13 @@ p, q {
 }
 
 main {
-    margin: 0 2vw;
     grid-area: content;
 }
 
 /* Layout View */
 body {
     display: grid;
+    grid-template-columns: 1fr 20fr 1fr;
     grid-template-areas:
         "header header header"
         ". content .";
