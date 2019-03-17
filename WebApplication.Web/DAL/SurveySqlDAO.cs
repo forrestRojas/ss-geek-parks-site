@@ -16,16 +16,9 @@ namespace WebApplication.Web.DAL
             this.connectionString = connectionString;
         }
 
-        public IList<Survey> GetSurveys()
-        {
-            List<Survey> surveys = new List<Survey>();
-
-            return surveys;
-        }
-
         public void NewSurvey(Survey survey)
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = new SqlConnection(this.connectionString))
             {
                 conn.Open();
                 string sql = $"insert into survey_result values (@ParkCode, @UserEmail, @UserState, @ActivityLevel);";
@@ -36,7 +29,6 @@ namespace WebApplication.Web.DAL
                 cmd.Parameters.AddWithValue("@ActivityLevel", survey.ActivityLevel);
 
                 cmd.ExecuteNonQuery();
-
             }
         }
     }

@@ -31,15 +31,15 @@ namespace WebApplication.Web.DAL
 
                     while (reader.Read())
                     {
-                        park = ConvertSqlToPark(reader);
+                        park = this.ConvertSqlToPark(reader);
                     }
                 }
             }
             catch (SqlException)
             {
-
                 throw;
             }
+
             return park;
         }
 
@@ -59,15 +59,13 @@ namespace WebApplication.Web.DAL
 
                     while (reader.Read())
                     {
-                        ParkData park = ConvertSqlToPark(reader);
+                        ParkData park = this.ConvertSqlToPark(reader);
                         parks.Add(park);
                     }
-
                 }
             }
             catch (SqlException)
             {
-
                 throw;
             }
 
@@ -98,14 +96,5 @@ namespace WebApplication.Web.DAL
 
             return park;
         }
-        // TODO Remove this code
-        //public IDictionary<string, int> GetParkSurveyCounts(IList<ParkData> parks, IList<Survey> surveys)
-        //{
-        //    return (from park in parks
-        //            join survey in surveys on park.Code equals survey.ParkCode into parkSurveys
-        //            orderby park.Name ascending
-        //            select new { parks = park.Name, surveys = parkSurveys.Count() }
-        //        ).ToDictionary(p => p.parks, s => s.surveys);
-        //}
     }
 }

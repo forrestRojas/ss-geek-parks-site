@@ -8,27 +8,27 @@ namespace WebApplication.Web.Models
     public class DailyWeather
     {
         /// <summary>
-        /// The park identifier code
+        /// Gets or sets the park identifier code
         /// </summary>
         public string ParkCode { get; set; }
 
         /// <summary>
-        /// The forecast day for the park
+        /// Gets or sets the forecast day for the park
         /// </summary>
         public int ForecastDay { get; set; }
 
         /// <summary>
-        /// The expected low temp for the forecast day in degrees F
+        /// Gets or sets the expected low temp for the forecast day in degrees F
         /// </summary>
         public double LowTemp { get; set; }
 
         /// <summary>
-        /// The expected high temp for the forecast day in degrees F
+        /// Gets or sets the expected high temp for the forecast day in degrees F
         /// </summary>
         public double HiTemp { get; set; }
 
         /// <summary>
-        /// The projected forecast for the day
+        /// Gets or sets the projected forecast for the day
         /// </summary>
         public string Forecast { get; set; }
     }
