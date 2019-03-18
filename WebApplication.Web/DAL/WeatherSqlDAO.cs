@@ -18,11 +18,11 @@ namespace WebApplication.Web.DAL
 
         public IList<DailyWeather> GetWeather(string code)
         {
-            IList<DailyWeather> WeatherForecast = new List<DailyWeather>();
+            IList<DailyWeather> weatherForecast = new List<DailyWeather>();
 
             try
             {
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlConnection conn = new SqlConnection(this.connectionString))
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand("select * from weather where parkCode = @parkCode order by fiveDayForecastValue", conn);
@@ -31,8 +31,8 @@ namespace WebApplication.Web.DAL
 
                     while (reader.Read())
                     {
-                        DailyWeather dailyWeather = ConvertSqlToWeather(reader);
-                        WeatherForecast.Add(dailyWeather);
+                        DailyWeather dailyWeather = this.ConvertSqlToWeather(reader);
+                        weatherForecast.Add(dailyWeather);
                     }
                 }
             }
@@ -41,7 +41,8 @@ namespace WebApplication.Web.DAL
                 Console.WriteLine(ex.Message);
                 throw;
             }
-            return WeatherForecast;
+
+            return weatherForecast;
         }
 
         private DailyWeather ConvertSqlToWeather(SqlDataReader reader)

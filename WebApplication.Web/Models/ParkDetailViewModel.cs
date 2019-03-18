@@ -11,7 +11,7 @@ namespace WebApplication.Web.Models
     public class ParkDetailViewModel
     {
         /// <summary>
-        /// Gets or Sets the list of daily weather for the park.
+        /// Gets or sets the list of daily weather for the park.
         /// </summary>
         public IList<DailyWeather> Forecast { get; set; }
 
@@ -21,10 +21,8 @@ namespace WebApplication.Web.Models
         public ParkData Park { get; set; }
 
         /// <summary>
-        /// Passes the weather advisories for the first day's forecast
+        /// Gets or sets the weather advisories for the first day's forecast
         /// </summary>
         public string WeatherAdvisories { get; set; }
-
-
     }
 }

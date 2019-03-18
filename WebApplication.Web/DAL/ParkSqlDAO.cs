@@ -52,15 +52,15 @@ namespace WebApplication.Web.DAL
 
                     while (reader.Read())
                     {
-                        park = ConvertSqlToPark(reader);
+                        park = this.ConvertSqlToPark(reader);
                     }
                 }
             }
             catch (SqlException)
             {
-
                 throw;
             }
+
             return park;
         }
 
@@ -90,15 +90,13 @@ namespace WebApplication.Web.DAL
 
                     while (reader.Read())
                     {
-                        ParkData park = ConvertSqlToPark(reader);
+                        ParkData park = this.ConvertSqlToPark(reader);
                         parks.Add(park);
                     }
-
                 }
             }
             catch (SqlException)
             {
-
                 throw;
             }
 

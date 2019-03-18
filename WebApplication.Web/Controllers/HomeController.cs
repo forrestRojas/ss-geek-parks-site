@@ -25,43 +25,50 @@ namespace WebApplication.Web.Controllers
         public IActionResult Index()
         {
             IList<ParkData> parks = this.parkDAO.GetParks();
-            return View(parks);
+            return this.View(parks);
         }
 
         [HttpGet]
         public IActionResult Detail(string code)
         {
-            ParkData park = parkDAO.GetPark(code);
-            string advisories = String.Empty;
-            IList<DailyWeather> forecast = weatherDAO.GetWeather(code);
+            ParkData park = this.parkDAO.GetPark(code);
+            string advisories = string.Empty;
+            IList<DailyWeather> forecast = this.weatherDAO.GetWeather(code);
             if (forecast[0].Forecast == "snow")
             {
                 advisories += "Snow advisory. Pack snowshoes. ";
             }
+
             if (forecast[0].Forecast == "rain" || forecast[0].Forecast == "thunderstorms")
             {
                 advisories += "Rain advisory. Pack rain gear and wear waterproof shoes. ";
             }
+
             if (forecast[0].Forecast == "thunderstorms")
             {
                 advisories += "Thunderstorm advisory. Seek shelter and avoid hiking on exposed ridges. ";
             }
+
             if (forecast[0].Forecast == "sunny")
             {
                 advisories += "Weather advisory. Pack sunblock. ";
             }
-            if(forecast[0].HiTemp > 75)
+
+            if (forecast[0].HiTemp > 75)
             {
                 advisories += "Heat advisory. Bring an extra gallon of water. ";
             }
+
             if (forecast[0].HiTemp - forecast[0].LowTemp > 20)
             {
                 advisories += "Temperature differential advisory.  Wear breathable layers. ";
             }
+
             if (forecast[0].LowTemp < 20)
             {
                 advisories += "Cold advisory. Beware of exposure to frigid temperatures. ";
             }
+
             ParkDetailViewModel model = new ParkDetailViewModel
             {
                 Park = park,
@@ -69,14 +76,13 @@ namespace WebApplication.Web.Controllers
                 WeatherAdvisories = advisories
             };
 
-
-            return View(model);   //ParkDetailViewModel model);
+            return this.View(model);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return this.View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? this.HttpContext.TraceIdentifier });
         }
     }
 }

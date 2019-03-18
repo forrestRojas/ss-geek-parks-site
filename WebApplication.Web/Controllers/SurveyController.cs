@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using WebApplication.Web.DAL;
 using WebApplication.Web.Models;
-
 
 namespace WebApplication.Web.Controllers
 {
@@ -27,42 +26,40 @@ namespace WebApplication.Web.Controllers
         [HttpGet]
         public IActionResult DailySurvey()
         {
-            if(Request.Cookies["SurveyComplete"] != null)
+            if (this.Request.Cookies["SurveyComplete"] != null)
             {
-                return RedirectToAction("FavoriteParks");
+                return this.RedirectToAction("FavoriteParks");
             }
-            ParkData park = new ParkData();
-            IList<ParkData> parks = parkDAO.GetParks();
-            ViewData["ParkList"] = parks;
-            return View();
-        }
 
+            ParkData park = new ParkData();
+            IList<ParkData> parks = this.parkDAO.GetParks();
+            this.ViewData["ParkList"] = parks;
+            return this.View();
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AddToSurvey(string ParkCode, string UserEmail, string UserState, string ActivityLevel)
+        public IActionResult AddToSurvey(string parkCode, string userEmail, string userState, string activityLevel)
         {
-            Survey newSurvey = new Survey
-            {
-                ParkCode = ParkCode,
-                UserEmail = UserEmail,
-                UserState = UserState,
-                ActivityLevel = ActivityLevel
-            };
-            surveyDAO.NewSurvey(newSurvey);
+            Survey newSurvey = new Survey();
+            newSurvey.ParkCode = parkCode;
+            newSurvey.UserEmail = userEmail;
+            newSurvey.UserState = userState;
+            newSurvey.ActivityLevel = activityLevel;
+            this.surveyDAO.NewSurvey(newSurvey);
 
             // set cookie so user can't participate again today
-            Response.Cookies.Append("SurveyComplete", "true");
+            this.Response.Cookies.Append("SurveyComplete", "true");
 
-            return RedirectToAction("FavoriteParks");
+            return this.RedirectToAction("FavoriteParks");
         }
 
         [HttpGet]
         public IActionResult FavoriteParks()
         {
-            IList<ParkData> parks = parkDAO.GetParks();
-  
-            return View(parks);
+            IList<ParkData> parks = this.parkDAO.GetParks();
+
+            return this.View(parks);
         }
     }
 }
