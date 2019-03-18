@@ -14,13 +14,8 @@ namespace WebApplication.Web.DAL
         /// <summary>
         /// Creates a new survey and adds it to the database.
         /// </summary>
-        /// <param name="survey"></param>
-        void NewSurvey(Survey survey);
-
-        /// <summary>
-        /// Gets all the surveys from the database.
-        /// </summary>
-        /// <returns></returns>
-        IList<Survey> GetSurveys();
+        /// <returns>A Bool to indicate if the <see cref="Survey"/> was saved.</returns>
+        /// <param name="survey">A Survey to be added to teh database</param>
+        bool NewSurvey(Survey survey);
     }
 }

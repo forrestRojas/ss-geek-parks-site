@@ -7,15 +7,30 @@ using WebApplication.Web.Models;
 
 namespace WebApplication.Web.DAL
 {
+    /// <summary>
+    /// Represents a PArkSqlDAO
+    /// </summary>
     public class ParkSqlDAO : IParkDAO
     {
+        /// <summary>
+        /// The Sql Connection string
+        /// </summary>
         private readonly string connectionString;
 
+        /// <summary>
+        /// Creates a new ParkSqlDAO
+        /// </summary>
+        /// <param name="connectionString">The sql Connection string</param>
         public ParkSqlDAO(string connectionString)
         {
             this.connectionString = connectionString;
         }
 
+        /// <summary>
+        /// Gets a Single park from the SQL Database via the park code.
+        /// </summary>
+        /// <param name="code">The park's unique code.</param>
+        /// <returns>a <see cref="ParkData"/> model.</returns>
         public ParkData GetPark(string code)
         {
             ParkData park = new ParkData();
@@ -49,6 +64,10 @@ namespace WebApplication.Web.DAL
             return park;
         }
 
+        /// <summary>
+        /// Gets all the parks form the SQL Database.
+        /// </summary>
+        /// <returns>An <see cref="List{T}"/> of <see cref="ParkData"/>.</returns>
         public IList<ParkData> GetParks()
         {
             List<ParkData> parks = new List<ParkData>();
@@ -86,6 +105,11 @@ namespace WebApplication.Web.DAL
             return parks;
         }
 
+        /// <summary>
+        /// Converts the reader data into a <see cref="ParkData"/> model.
+        /// </summary>
+        /// <param name="reader">A <see cref="SqlDataReader"/></param>
+        /// <returns>A <see cref="ParkData"/> model.</returns>
         private ParkData ConvertSqlToPark(SqlDataReader reader)
         {
             ParkData park = new ParkData
@@ -110,14 +134,5 @@ namespace WebApplication.Web.DAL
 
             return park;
         }
-        // TODO Remove this code
-        //public IDictionary<string, int> GetParkSurveyCounts(IList<ParkData> parks, IList<Survey> surveys)
-        //{
-        //    return (from park in parks
-        //            join survey in surveys on park.Code equals survey.ParkCode into parkSurveys
-        //            orderby park.Name ascending
-        //            select new { parks = park.Name, surveys = parkSurveys.Count() }
-        //        ).ToDictionary(p => p.parks, s => s.surveys);
-        //}
     }
 }
